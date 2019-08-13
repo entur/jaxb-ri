@@ -33,7 +33,7 @@ import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XSWildcard;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -159,7 +159,7 @@ public interface Axis<T extends XSComponent> {
          * Stateful visitor that remembers what's already traversed, to reduce the search space.
          */
         final class Visitor extends AbstractAxisImpl<XSComponent> {
-            private final Set<XSComponent> visited = new HashSet<XSComponent>();
+            private final Set<XSComponent> visited = new LinkedHashSet<XSComponent>();
 
             /**
              * Recursively apply the {@link Axis#DESCENDANTS} axis.

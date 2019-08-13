@@ -20,7 +20,7 @@ import org.xml.sax.Locator;
 import java.util.AbstractSet;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +49,7 @@ public abstract class AttributesHolder extends DeclarationImpl {
         attributes.put( name, a );
     }
     /** prohibited attributes. */
-    protected final Set<UName> prohibitedAtts = new HashSet<UName>();
+    protected final Set<UName> prohibitedAtts = new LinkedHashSet<UName>();
     public void addProhibitedAttribute( UName name ) {
         prohibitedAtts.add(name);
     }
@@ -86,7 +86,7 @@ public abstract class AttributesHolder extends DeclarationImpl {
 
 
     /** {@link Ref.AttGroup}s that are directly refered from this. */
-    protected final Set<Ref.AttGroup> attGroups = new HashSet<Ref.AttGroup>();
+    protected final Set<Ref.AttGroup> attGroups = new LinkedHashSet<Ref.AttGroup>();
 
     public void addAttGroup( Ref.AttGroup a ) { attGroups.add(a); }
 

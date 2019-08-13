@@ -28,7 +28,7 @@ import com.sun.xml.xsom.visitor.XSVisitor;
 import org.xml.sax.Locator;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -121,31 +121,35 @@ public class ElementDecl extends DeclarationImpl implements XSElementDecl, Ref.T
      */
     @Override
     public XSElementDecl[] listSubstitutables() {
-        Set<? extends XSElementDecl> s = getSubstitutables();
+        LinkedHashSet<? extends XSElementDecl> s = getSubstitutables();
         return s.toArray(new XSElementDecl[s.size()]);
     }
 
     /** Set that represents element decls that can substitute this element. */
-    private Set<XSElementDecl> substitutables = null;
+    private LinkedHashSet<XSElementDecl> substitutables = null;
 
     /** Unmodifieable view of {@link #substitutables}. */
-    private Set<XSElementDecl> substitutablesView = null;
+    private LinkedHashSet<XSElementDecl> substitutablesView = null;
     
     @Override
-    public Set<? extends XSElementDecl> getSubstitutables() {
+    public LinkedHashSet<? extends XSElementDecl> getSubstitutables() {
         if( substitutables==null ) {
             // if the field is null by the time this method
             // is called, it means this element is substitutable by itself only.
-            substitutables = substitutablesView = Collections.singleton((XSElementDecl)this);
+            substitutablesView = new LinkedHashSet<XSElementDecl>();
+            substitutablesView.add(this);
+            substitutables = substitutablesView;
+
         }
         return substitutablesView;
     }
     
     protected void addSubstitutable( ElementDecl decl ) {
         if( substitutables==null ) {
-            substitutables = new HashSet<XSElementDecl>();
+            substitutables = new LinkedHashSet<XSElementDecl>();
             substitutables.add(this);
-            substitutablesView = Collections.unmodifiableSet(substitutables);
+            substitutablesView = new LinkedHashSet<>();
+            substitutablesView.addAll(substitutables);
         }
         substitutables.add(decl);
     }

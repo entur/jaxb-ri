@@ -14,7 +14,7 @@ import com.sun.xml.xsom.XSComplexType;
 import com.sun.xml.xsom.XSType;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -39,7 +39,7 @@ class Util {
     }
 
     public static XSType[] listSubstitutables( XSType _this ) {
-        Set substitables = new HashSet();
+        Set substitables = new LinkedHashSet();
         buildSubstitutables( _this, substitables );
         return (XSType[]) substitables.toArray(new XSType[substitables.size()]);
     }

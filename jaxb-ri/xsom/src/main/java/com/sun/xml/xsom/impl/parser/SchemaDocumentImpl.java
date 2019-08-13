@@ -14,7 +14,7 @@ import com.sun.xml.xsom.impl.SchemaImpl;
 import com.sun.xml.xsom.parser.SchemaDocument;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -34,12 +34,12 @@ public final class SchemaDocumentImpl implements SchemaDocument
     /**
      * {@link SchemaDocumentImpl}s that are referenced from this document.
      */
-    final Set<SchemaDocumentImpl> references = new HashSet<SchemaDocumentImpl>();
+    final Set<SchemaDocumentImpl> references = new LinkedHashSet<SchemaDocumentImpl>();
 
     /**
      * {@link SchemaDocumentImpl}s that are referencing this document.
      */
-    final Set<SchemaDocumentImpl> referers = new HashSet<SchemaDocumentImpl>();
+    final Set<SchemaDocumentImpl> referers = new LinkedHashSet<SchemaDocumentImpl>();
 
     protected SchemaDocumentImpl(SchemaImpl schema, String _schemaDocumentURI) {
         this.schema = schema;
@@ -69,7 +69,7 @@ public final class SchemaDocumentImpl implements SchemaDocument
     public Set<SchemaDocument> getImportedDocuments(String targetNamespace) {
         if(targetNamespace==null)
             throw new IllegalArgumentException();
-        Set<SchemaDocument> r = new HashSet<SchemaDocument>();
+        Set<SchemaDocument> r = new LinkedHashSet<SchemaDocument>();
         for (SchemaDocumentImpl doc : references) {
             if(doc.getTargetNamespace().equals(targetNamespace))
                 r.add(doc);

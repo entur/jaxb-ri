@@ -27,7 +27,7 @@ import org.xml.sax.Locator;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -47,7 +47,7 @@ public abstract class WildcardImpl extends ComponentImpl implements XSWildcard, 
             return new Any(owner,null,null,null,mode);
         
         if(this instanceof Finite && rhs instanceof Finite) {
-            Set<String> values = new HashSet<String>();
+            Set<String> values = new LinkedHashSet<String>();
             values.addAll( ((Finite)this).names );
             values.addAll( ((Finite)rhs ).names );
             return new Finite(owner,null,null,null,values,mode);

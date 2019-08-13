@@ -289,7 +289,7 @@
     cc:return-type="WildcardImpl" cc:return-value="makeResult()">
     <cc:java-import>
       import java.util.StringTokenizer;
-      import java.util.HashSet;
+      import java.util.LinkedHashSet;
     </cc:java-import>
     <cc:java-body>
       private WildcardImpl makeResult() {
@@ -310,7 +310,7 @@
                 $runtime.currentSchema.getTargetNamespace(),mode);
         
         StringTokenizer tokens = new StringTokenizer(ns);
-        HashSet s = new HashSet();
+        LinkedHashSet s = new LinkedHashSet();
         while(tokens.hasMoreTokens()) {
             String ns = tokens.nextToken();
             if(ns.equals("##local")) ns="";

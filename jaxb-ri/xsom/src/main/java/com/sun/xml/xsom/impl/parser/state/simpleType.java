@@ -459,7 +459,7 @@ class simpleType extends NGCCHandler {
         if(finalValue==null)
           return Collections.EMPTY_SET;
 
-        Set s = new HashSet();
+        Set s = new LinkedHashSet();
         StringTokenizer tokens = new StringTokenizer(finalValue);
         while(tokens.hasMoreTokens()) {
           String token = tokens.nextToken();

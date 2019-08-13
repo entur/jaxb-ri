@@ -13,7 +13,7 @@ package com.sun.xml.xsom.impl.scd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Collections;
 
 /**
@@ -148,7 +148,7 @@ public class Iterators {
      * Only return unique items.
      */
     static final class Unique<T> extends Filter<T> {
-        private Set<T> values = new HashSet<T>();
+        private Set<T> values = new LinkedHashSet<T>();
         public Unique(Iterator<? extends T> core) {
             super(core);
         }

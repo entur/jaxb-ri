@@ -26,7 +26,7 @@ import com.sun.xml.xsom.impl.parser.NGCCRuntimeEx;
     import java.math.BigInteger;
   
 import java.util.StringTokenizer;
-      import java.util.HashSet;
+      import java.util.LinkedHashSet;
 
 
 class wildcardBody extends NGCCHandler {
@@ -417,7 +417,7 @@ class wildcardBody extends NGCCHandler {
                 $runtime.currentSchema.getTargetNamespace(),mode);
         
         StringTokenizer tokens = new StringTokenizer(ns);
-        HashSet s = new HashSet();
+        LinkedHashSet s = new LinkedHashSet();
         while(tokens.hasMoreTokens()) {
             String ns = tokens.nextToken();
             if(ns.equals("##local")) ns="";

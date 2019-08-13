@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.net.URL;
 import java.util.Set;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 import javax.xml.parsers.SAXParserFactory;
 
@@ -192,7 +192,7 @@ public final class XSOMParser {
      *      can be empty but never null.
      */
     public Set<SchemaDocument> getDocuments() {
-        return new HashSet<SchemaDocument>(context.parsedDocuments.keySet());
+        return new LinkedHashSet<SchemaDocument>(context.parsedDocuments.keySet());
     }
     
     public EntityResolver getEntityResolver() {
