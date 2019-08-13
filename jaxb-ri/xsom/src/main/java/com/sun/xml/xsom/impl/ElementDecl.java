@@ -130,28 +130,30 @@ public class ElementDecl extends DeclarationImpl implements XSElementDecl, Ref.T
 
     /** Unmodifieable view of {@link #substitutables}. */
     private LinkedHashSet<XSElementDecl> substitutablesView = null;
-    
+
     @Override
     public LinkedHashSet<? extends XSElementDecl> getSubstitutables() {
         if( substitutables==null ) {
             // if the field is null by the time this method
             // is called, it means this element is substitutable by itself only.
-            substitutablesView = new LinkedHashSet<XSElementDecl>();
-            substitutablesView.add(this);
-            substitutables = substitutablesView;
-
+            initializeSubstitutables();
         }
         return substitutablesView;
     }
     
     protected void addSubstitutable( ElementDecl decl ) {
         if( substitutables==null ) {
-            substitutables = new LinkedHashSet<XSElementDecl>();
-            substitutables.add(this);
-            substitutablesView = new LinkedHashSet<>();
-            substitutablesView.addAll(substitutables);
+            initializeSubstitutables();
         }
         substitutables.add(decl);
+        substitutablesView.add(decl);
+    }
+
+    private void initializeSubstitutables() {
+        substitutables = new LinkedHashSet<XSElementDecl>();
+        substitutablesView = new LinkedHashSet<XSElementDecl>();
+        substitutables.add(this);
+        substitutablesView.add(this);
     }
     
     
